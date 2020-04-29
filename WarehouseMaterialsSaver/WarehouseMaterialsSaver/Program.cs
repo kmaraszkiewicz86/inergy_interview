@@ -4,7 +4,7 @@ using WarehouseMaterialsSaver.Core.Interfaces;
 using WarehouseMaterialsSaver.Enums;
 using WarehouseMaterialsSaver.Models;
 
-namespace FactoryProductSaver
+namespace WarehouseMaterialsSaver
 {
     class Program
     {
