@@ -1,30 +1,48 @@
-﻿using System.Collections.Generic;
-using FactoryProductSaver.Models;
+﻿using FactoryProductSaver.Core.Implementations;
 
 namespace FactoryProductSaver.Core.Interfaces
 {
-    public class WarehouseDataFacade
+    public class WarehouseDataFacade: IWarehouseDataFacade
     {
+        /// <summary>
+        /// <see cref="IReader"/>
+        /// </summary>
         private readonly IReader _reader;
-        private readonly IParser _parser;
-        private readonly IWriter _writer;
 
-        public WarehouseDataFacade(IReader reader, IParser parser, IWriter writer)
+        /// <summary>
+        /// <see cref="IParser"/>
+        /// </summary>
+        private readonly IParser _parser;
+
+        /// <summary>
+        /// <see cref="IItemsFormatter"/>
+        /// </summary>
+        private readonly IItemsFormatter _itemsFormatter;
+
+        /// <summary>
+        /// Create instance of class
+        /// </summary>
+        /// <param name="warehouseAbstractFactory"><see cref="WarehouseAbstractFactory"/></param>
+        public WarehouseDataFacade(WarehouseAbstractFactory warehouseAbstractFactory)
         {
-            _reader = reader;
-            _parser = parser;
-            _writer = writer;
+            _reader = warehouseAbstractFactory.CreateReader();
+            _parser = warehouseAbstractFactory.CreateParser();
+            _itemsFormatter = warehouseAbstractFactory.CreateWriter();
         }
 
-        public IWriter ReadAndParseInput()
+        /// <summary>
+        /// First step for reading string from input
+        /// </summary>
+        /// <returns><see cref="IItemsFormatter"/></returns>
+        public IItemsFormatter ReadAndParseInput()
         {
             foreach (var line in _reader.ReadAllText())
             {
                 _parser.ParseText(line);
             }
 
-            _writer.Warehouses = _parser.ConvertedItems;
-            return _writer;
+            _itemsFormatter.Warehouses = _parser.ConvertedItems;
+            return _itemsFormatter;
         }
     }
 }

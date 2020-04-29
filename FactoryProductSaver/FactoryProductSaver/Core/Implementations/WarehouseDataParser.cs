@@ -7,57 +7,74 @@ using FactoryProductSaver.Models;
 
 namespace FactoryProductSaver.Core.Implementations
 {
+    /// <summary>
+    /// Functionality for parse input string
+    /// </summary>
     public class WarehouseDataParser : IParser
     {
-        private Regex regex => new Regex(@"^(?!.*#)(.+);(.+);(.+)|{3,*}((.+),(\d+))$");
-
-        private List<Warehouse> _convertedItems = new List<Warehouse>();
-
+        /// <summary>
+        /// Items that was matched with success by regex format
+        /// </summary>
         public IEnumerable<Warehouse> ConvertedItems => _convertedItems;
 
-        public string InCompletedLine { get; set; }
+        /// <summary>
+        /// Format to check match with fetched line of data
+        /// </summary>
+        private readonly Regex _formatRegex = new Regex(@"^(?!.*#)(.+);(.+);(.+)|{3,*}((.+),(\d+))$");
 
+        /// <summary>
+        /// <see cref="ConvertedItems"/>
+        /// </summary>
+        private readonly List<Warehouse> _convertedItems = new List<Warehouse>();
+
+        /// <summary>
+        /// Parse line of fetched string
+        /// </summary>
+        /// <param name="line"></param>
         public void ParseText(string line)
         {
-            var result = MatchString(line);
+            var result = _formatRegex.Match(line);
 
             if (result.Success)
             {
-                var values = result.Groups.Values.ToArray();
+                var matchedGroups = result.Groups.Values.ToArray();
 
-                var material = new Material()
+                foreach (string value in matchedGroups[3].Value.Split('|'))
                 {
-                    Id = values[2].Value,
-                    Name = values[1].Value
-                };
-
-                foreach (var value in values[3].Value.Split('|'))
-                {
-                    var warehouseData = value.Split(',');
-                    var warehouse =
-                        _convertedItems.FirstOrDefault(w => w.Name.ToLower() == warehouseData[0].ToLower());
-
-                    if (warehouse == null)
-                    {
-                        warehouse = new Warehouse
-                        {
-                            Materials = new List<Material>(),
-                            Name = warehouseData[0]
-                        };
-
-                        _convertedItems.Add(warehouse);
-                    }
-
-                    material.Count = Convert.ToInt32(warehouseData[1]);
-
-                    warehouse.Materials.Add(material);
+                    AddMaterialsToWarehouse(matchedGroups, value);
                 }
             }
         }
 
-        private Match MatchString(string line)
+        /// <summary>
+        /// Match format string into warehouse object
+        /// </summary>
+        /// <param name="matchedGroups"></param>
+        /// <param name="value"></param>
+        private void AddMaterialsToWarehouse(IReadOnlyList<Group> matchedGroups, string value)
         {
-            return regex.Match(line);
+            var warehouseData = value.Split(',');
+            var warehouse =
+                _convertedItems.FirstOrDefault(w =>
+                    String.Equals(w.Name, warehouseData[0], StringComparison.CurrentCultureIgnoreCase));
+
+            if (warehouse == null)
+            {
+                warehouse = new Warehouse
+                {
+                    Materials = new List<Material>(),
+                    Name = warehouseData[0]
+                };
+
+                _convertedItems.Add(warehouse);
+            }
+
+            warehouse.Materials.Add(new Material
+            {
+                Id = matchedGroups[2].Value,
+                Name = matchedGroups[1].Value,
+                Count = Convert.ToInt32(warehouseData[1])
+            });
         }
     }
 }
