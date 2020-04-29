@@ -52,7 +52,7 @@ namespace WarehouseMaterialsSaver.Core.Implementations
 
                 foreach (var material in _materialOrderBy.Execute(warehouse.Materials))
                 {
-                    strBuilder.AppendLine($"{material.Id}: ({material.Count})");
+                    strBuilder.AppendLine($"{material.Id}: {material.Count}");
                 }
 
                 yield return strBuilder.ToString();

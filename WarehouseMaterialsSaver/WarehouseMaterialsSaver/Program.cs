@@ -28,7 +28,6 @@ namespace FactoryProductSaver
             foreach (var item in warehouseDataFacade.ReadAndParseInput().GetAllObjects())
             {
                 Console.WriteLine(item);
-                Console.WriteLine();
             }
         }
     }
