@@ -23,7 +23,7 @@ namespace WarehouseMaterialsSaver.Core.Interfaces
         /// Create instance of class
         /// </summary>
         /// <param name="warehouseAbstractFactory"><see cref="WarehouseAbstractFactory"/></param>
-        public WarehouseDataFacade(WarehouseAbstractFactory warehouseAbstractFactory)
+        public WarehouseDataFacade(IWarehouseAbstractFactory warehouseAbstractFactory)
         {
             _reader = warehouseAbstractFactory.CreateReader();
             _parser = warehouseAbstractFactory.CreateParser();

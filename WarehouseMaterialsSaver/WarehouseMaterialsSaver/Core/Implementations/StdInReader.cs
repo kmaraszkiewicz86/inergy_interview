@@ -23,11 +23,6 @@ namespace WarehouseMaterialsSaver.Core.Implementations
                     break;
                 }
 
-                if (text.StartsWith("#"))
-                {
-                    continue;
-                }
-
                 yield return text;
             }
         }
