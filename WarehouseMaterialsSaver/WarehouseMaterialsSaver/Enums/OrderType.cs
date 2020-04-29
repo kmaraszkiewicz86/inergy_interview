@@ -1,4 +1,4 @@
-﻿namespace FactoryProductSaver.Enums
+﻿namespace WarehouseMaterialsSaver.Enums
 {
     public enum OrderType
     {
