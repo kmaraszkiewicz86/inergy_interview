@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using FactoryProductSaver.Core.Interfaces;
-using FactoryProductSaver.Models;
+using WarehouseMaterialsSaver.Core.Interfaces;
+using WarehouseMaterialsSaver.Models;
 
-namespace FactoryProductSaver.Core.Implementations
+namespace WarehouseMaterialsSaver.Core.Implementations
 {
     /// <summary>
     /// Functionality for parse input string

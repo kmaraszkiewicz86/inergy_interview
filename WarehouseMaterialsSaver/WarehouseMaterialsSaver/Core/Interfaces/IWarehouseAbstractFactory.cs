@@ -1,4 +1,4 @@
-﻿namespace FactoryProductSaver.Core.Interfaces
+﻿namespace WarehouseMaterialsSaver.Core.Interfaces
 {
     /// <summary>
     /// Helper class to match referenced object

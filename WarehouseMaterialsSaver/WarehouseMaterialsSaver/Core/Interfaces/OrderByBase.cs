@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FactoryProductSaver.Enums;
-using FactoryProductSaver.Models;
+using WarehouseMaterialsSaver.Enums;
+using WarehouseMaterialsSaver.Models;
 
-namespace FactoryProductSaver.Core.Interfaces
+namespace WarehouseMaterialsSaver.Core.Interfaces
 {
     /// <summary>
     /// Abstract class for ordering functionality

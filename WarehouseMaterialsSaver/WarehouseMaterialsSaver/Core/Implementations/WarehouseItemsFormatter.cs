@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using FactoryProductSaver.Core.Interfaces;
-using FactoryProductSaver.Models;
+using WarehouseMaterialsSaver.Core.Interfaces;
+using WarehouseMaterialsSaver.Models;
 
-namespace FactoryProductSaver.Core.Implementations
+namespace WarehouseMaterialsSaver.Core.Implementations
 {
     public class WarehouseItemsFormatter: IItemsFormatter
     {

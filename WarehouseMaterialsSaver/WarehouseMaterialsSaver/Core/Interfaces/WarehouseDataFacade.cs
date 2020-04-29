@@ -1,6 +1,6 @@
-﻿using FactoryProductSaver.Core.Implementations;
+﻿using WarehouseMaterialsSaver.Core.Implementations;
 
-namespace FactoryProductSaver.Core.Interfaces
+namespace WarehouseMaterialsSaver.Core.Interfaces
 {
     public class WarehouseDataFacade: IWarehouseDataFacade
     {

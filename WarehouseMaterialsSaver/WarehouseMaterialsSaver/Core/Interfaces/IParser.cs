@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using FactoryProductSaver.Models;
+using WarehouseMaterialsSaver.Models;
 
-namespace FactoryProductSaver.Core.Interfaces
+namespace WarehouseMaterialsSaver.Core.Interfaces
 {
     /// <summary>
     /// Functionality for parse input string

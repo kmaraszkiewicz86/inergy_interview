@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using FactoryProductSaver.Core.Interfaces;
+using WarehouseMaterialsSaver.Core.Interfaces;
 
-namespace FactoryProductSaver.Core.Implementations
+namespace WarehouseMaterialsSaver.Core.Implementations
 {
     public class StdInReader : IReader
     {

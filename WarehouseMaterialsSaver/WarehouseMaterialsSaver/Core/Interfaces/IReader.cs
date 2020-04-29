@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FactoryProductSaver.Core.Interfaces
+namespace WarehouseMaterialsSaver.Core.Interfaces
 {
     public interface IReader
     {

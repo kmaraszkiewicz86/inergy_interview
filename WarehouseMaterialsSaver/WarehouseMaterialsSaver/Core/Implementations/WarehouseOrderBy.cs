@@ -1,7 +1,7 @@
-﻿using FactoryProductSaver.Core.Interfaces;
-using FactoryProductSaver.Models;
+﻿using WarehouseMaterialsSaver.Core.Interfaces;
+using WarehouseMaterialsSaver.Models;
 
-namespace FactoryProductSaver.Core.Implementations
+namespace WarehouseMaterialsSaver.Core.Implementations
 {
 
     /// <summary>
